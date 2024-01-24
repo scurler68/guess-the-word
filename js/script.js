@@ -43,6 +43,7 @@ guessButton.addEventListener("click", function (e) {
   message.innerText = ""; //clear message paragraph
   const guess = letterInput.value; //capture user's input
   const validGuess = validateInput(guess); //Call validateInput function and pass to user's input value
+
   if (validGuess) {
     makeGuess(guess);
   }
@@ -57,7 +58,7 @@ const validateInput = function (input) {
   } else if (input.length > 1) {
     message.innerText = `You may only enter 1 letter at a time.`;
   } else if (!input.match(acceptedLetter)) {
-    message.innerText = `Only A to Z. Use your brain, buddy.`;
+    message.innerText = `Only A to Z, please.`;
   } else {
     return input;
   }
@@ -106,7 +107,7 @@ const updateWordInProgress = function () {
   verifyWin();
 };
 
-//FUNCTION TO COUNT REMAINING GUESSES
+//FUNCTION TO UPDATE REMAINING GUESSES
 const countGuesses = function (guess) {
   const wordUpper = word.toUpperCase();
   if (!wordUpper.includes(guess)) {
@@ -119,9 +120,9 @@ const countGuesses = function (guess) {
   if (remainingGuesses === 0) {
     message.innerHTML = `Game over.  The word was <span class="highlight">${word}</span>.`;
   } else if (remainingGuesses === 1) {
-    remainingGuessesSpan.innerText = "Only 1 guess left.";
+    remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
   } else {
-    remainingGuessesSpan.innerText = `There are ${remainingGuesses} left.`;
+    remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
   }
 };
 
